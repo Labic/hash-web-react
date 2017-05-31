@@ -1,16 +1,16 @@
 {
-  "name": "react-boilerplate",
+  "name": "hash-web-react",
   "version": "3.4.0",
-  "description": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
+  "description": "A highly scalable, offline-first social network and media content app",
   "repository": {
     "type": "git",
-    "url": "git://github.com/react-boilerplate/react-boilerplate.git"
+    "url": "git://github.com/labic/hash-web-react.git"
   },
   "engines": {
     "npm": ">=3",
     "node": ">=5"
   },
-  "author": "Max Stoiber",
+  "author": "@GustavoRPS",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",
@@ -220,6 +220,7 @@
     "invariant": "2.2.2",
     "ip": "1.1.4",
     "lodash": "4.17.2",
+    "material-ui": "^0.18.0",
     "minimist": "1.2.0",
     "react": "15.4.1",
     "react-dom": "15.4.1",
@@ -229,6 +230,7 @@
     "react-router": "3.0.0",
     "react-router-redux": "4.0.6",
     "react-router-scroll": "0.4.1",
+    "react-truncate": "^2.1.1",
     "redux": "3.6.0",
     "redux-immutable": "3.0.8",
     "redux-saga": "0.14.0",

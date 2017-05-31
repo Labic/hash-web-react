@@ -1,42 +1,51 @@
-/**
- *
- * App
- *
- * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
- */
-
 import React from 'react';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
 
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import IconButton from 'material-ui/IconButton';
+import ActionHome from 'material-ui/svg-icons/action/home';
+
 import withProgressBar from 'components/ProgressBar';
 
-const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
-  display: flex;
-  min-height: 100%;
-  padding: 0 16px;
-  flex-direction: column;
-`;
 
 export function App(props) {
   return (
-    <AppWrapper>
+    <div>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="%s"
+        defaultTitle="Hash Web"
         meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
+          { name: 'description', content: 'A Social Network and Media dashboard application' },
         ]}
       />
-      <Header />
-      {React.Children.toArray(props.children)}
-      <Footer />
-    </AppWrapper>
+      <MuiThemeProvider>
+        <div>
+          <AppBar
+          title="Hash Web"
+          iconClassNameRight="muidocs-icon-navigation-expand-more"/>
+          <Drawer 
+          open={true} 
+          className="Drawer" 
+          disableSwipeToOpen={true}
+          containerStyle={{
+            top: '65px',
+            width: '60px',
+          }}>
+            <IconButton
+            iconClassName="muidocs-icon-custom-github" 
+            tooltip="Articles"
+            tooltipPosition="bottom-right">
+              <ActionHome />
+            </IconButton>
+          </Drawer>
+          <div className="content" style={{'position': 'fixed', 'padding': '15px 15px 15px 75px', 'height': '93%', 'overflowY': 'scroll'}}>
+            {React.Children.toArray(props.children)}
+          </div>
+        </div>
+      </MuiThemeProvider>
+    </div>
   );
 }
 
