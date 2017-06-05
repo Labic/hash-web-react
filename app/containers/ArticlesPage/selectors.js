@@ -7,9 +7,14 @@ const makeSelectFetchingArticles = () => createSelector(
   (articlesState) => articlesState.get('fetching')
 );
 
-const makeSelectArticlesResponse = () => createSelector(
+const makeSelectArticlesFilters = () => createSelector(
   selectArticles,
-  (articlesState) => articlesState.get('response')
+  (articlesState) => articlesState.get('filters')
+);
+
+const makeSelectArticles = () => createSelector(
+  selectArticles,
+  (articlesState) => articlesState.get('data')
 );
 
 const makeSelectFetchingArticlesError = () => createSelector(
@@ -19,6 +24,7 @@ const makeSelectFetchingArticlesError = () => createSelector(
 
 export {
   makeSelectFetchingArticles,
-  makeSelectArticlesResponse,
+  makeSelectArticlesFilters,
+  makeSelectArticles,
   makeSelectFetchingArticlesError,
 };

@@ -4,17 +4,22 @@ import request from 'utils/request';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { FETCH_ARTICLES } from './constants';
 import { fetchArticlesSuccess, fetchArticlesError } from './actions';
+import { makeSelectArticlesFilters } from './selectors';
 
 
 export function* fetchArticles() {
-  const requestURL = 'https://hash-api-mock.herokuapp.com/articles';
+  const filters = yield select(makeSelectArticlesFilters());
+  const keywords = filters.get('keywords').map((k) => 'filters[keywords]='+k).join('&')
+  const dateCreated = filters.get('dateCreated')
+  
+  console.log(keywords)
+  const requestURL = 'https://inep-hash-data-api-dev.herokuapp.com/articles?filters[dateCreated]='+dateCreated+'&'+keywords
 
   try {
-    // Call our request helper (see 'utils/request')
-    const response = { data: yield call(request, requestURL) };
+    const response = yield call(request, requestURL);
     yield put(fetchArticlesSuccess(response));
   } catch (error) {
-    console.info(error)
+    console.error(error)
     yield put(fetchArticlesError(error));
   }
 }
@@ -22,7 +27,7 @@ export function* fetchArticles() {
 /**
  * Root saga manages watcher lifecycle
  */
-export function* articlesData() {
+export function* articlesWatcher() {
   // Watches for FETCH_ARTICLES actions and calls getArticles when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
@@ -33,7 +38,8 @@ export function* articlesData() {
   yield cancel(watcher);
 }
 
+
 // Bootstrap sagas
 export default [
-  articlesData,
+  articlesWatcher,
 ];

@@ -16,28 +16,26 @@ export default function createRoutes(store) {
   // create reusable async injectors using getAsyncInjectors factory
   const { injectReducer, injectSagas } = getAsyncInjectors(store);
 
-  return [
-    {
-      path: '/articles',
-      name: 'articles',
-      getComponent(nextState, cb) {
-        const importModules = Promise.all([
-          import('containers/ArticlesPage/reducer'),
-          import('containers/ArticlesPage/sagas'),
-          import('containers/ArticlesPage'),
-        ]);
+  return [{
+    path: '/articles',
+    name: 'articles',
+    getComponent(nextState, cb) {
+      const importModules = Promise.all([
+        import('containers/ArticlesPage/reducer'),
+        import('containers/ArticlesPage/sagas'),
+        import('containers/ArticlesPage'),
+      ]);
 
-        const renderRoute = loadModule(cb);
+      const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, sagas, component]) => {
-          injectReducer('articles', reducer.default);
-          injectSagas(sagas.default);
+      importModules.then(([reducer, sagas, component]) => {
+        injectReducer('articles', reducer.default);
+        injectSagas(sagas.default);
 
-          renderRoute(component);
-        });
+        renderRoute(component);
+      });
 
-        importModules.catch(errorLoading);
-      },
+      importModules.catch(errorLoading);
     },
-  ];
+  },];
 }

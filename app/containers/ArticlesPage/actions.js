@@ -1,5 +1,6 @@
 import { 
   FETCH_ARTICLES, FETCHING_ARTICLES, 
+  CHANGE_ARTICLES_FILTERS,
   FETCH_ARTICLES_SUCCESS, FETCH_ARTICLES_ERROR,
 } from './constants';
 
@@ -14,6 +15,13 @@ export function fetchArticles(params) {
 export function fetchingArticles() {
   return {
     type: FETCHING_ARTICLES,
+  };
+}
+
+export function changeArticlesFilters(filters) {
+  return {
+    type: CHANGE_ARTICLES_FILTERS,
+    filters
   };
 }
 

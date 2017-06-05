@@ -9,13 +9,18 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 
 import withProgressBar from 'components/ProgressBar';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
 
 export function App(props) {
   return (
     <div>
       <Helmet
-        titleTemplate="%s"
-        defaultTitle="Hash Web"
+        titleTemplate='%s'
+        defaultTitle='Clipper'
         meta={[
           { name: 'description', content: 'A Social Network and Media dashboard application' },
         ]}
@@ -23,24 +28,32 @@ export function App(props) {
       <MuiThemeProvider>
         <div>
           <AppBar
-          title="Hash Web"
-          iconClassNameRight="muidocs-icon-navigation-expand-more"/>
+          title='Clipper'/>
           <Drawer 
-          open={true} 
-          className="Drawer" 
+          open={false} 
+          className='Drawer' 
           disableSwipeToOpen={true}
           containerStyle={{
             top: '65px',
             width: '60px',
           }}>
             <IconButton
-            iconClassName="muidocs-icon-custom-github" 
-            tooltip="Articles"
-            tooltipPosition="bottom-right">
+            iconClassName='muidocs-icon-custom-github' 
+            tooltip='Articles'
+            tooltipPosition='bottom-right'>
               <ActionHome />
             </IconButton>
           </Drawer>
-          <div className="content" style={{'position': 'fixed', 'padding': '15px 15px 15px 75px', 'height': '93%', 'overflowY': 'scroll'}}>
+          <div 
+            className='content' 
+            style={{
+              backgroundColor: '#e8e8e8',
+              position: 'fixed', 
+              padding: '15px 15px 15px 15px', 
+              height: '93%', 
+              width: '100%', 
+              overflowY: 'scroll'}}
+          >
             {React.Children.toArray(props.children)}
           </div>
         </div>
