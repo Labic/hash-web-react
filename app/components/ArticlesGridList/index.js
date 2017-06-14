@@ -55,7 +55,7 @@ function ArticlesGridList({fetching, error, articles}) {
                 />
                 <CardTitle 
                   className={'card-title'}
-                  title={article.name} 
+                  title={article.headline} 
                   style={{padding: '16px 0'}}
                   titleStyle={{padding: '0', fontSize: '20px', lineHeight: '22px'}}
                 /> 
