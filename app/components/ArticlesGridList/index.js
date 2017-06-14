@@ -42,7 +42,7 @@ function ArticlesGridList({fetching, error, articles}) {
               >
                 <CardHeader
                   className={'card-header'}
-                  subtitle={article.datePublished}
+                  subtitle={article.datePublished + ' / ' + article.dateCreated }
                   style={{padding: '5px 0'}}
                 />
                 <CardMedia
