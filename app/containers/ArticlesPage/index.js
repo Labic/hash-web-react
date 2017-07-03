@@ -12,6 +12,7 @@ import ChipInput from 'material-ui-chip-input'
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import ArticlesGridList from 'components/ArticlesGridList'
+import ArticlesTableView from './ArticlesTableView'
 
 import { 
   makeSelectFetchingArticles, 
@@ -113,8 +114,8 @@ export class ArticlesPage extends React.Component { // eslint-disable-line react
             onTouchTap={this.handleFilterOnTouchTap}
           />
         </Toolbar>
-
-        <ArticlesGridList {...articlesGridListProps} />
+        <ArticlesTableView {...this.props} />
+        {/* <ArticlesGridList {...articlesGridListProps} />  */}
       </section>
     )
   }

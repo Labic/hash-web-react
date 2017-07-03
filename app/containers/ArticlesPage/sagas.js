@@ -12,7 +12,6 @@ export function* fetchArticles() {
   const keywords = filters.get('keywords').map((k) => 'filters[keywords]='+k).join('&')
   const dateCreated = filters.get('dateCreated')
   
-  console.log(keywords)
   const requestURL = 'https://inep-hash-data-api-dev.herokuapp.com/articles?filters[dateCreated]='+dateCreated+'&'+keywords
 
   try {
